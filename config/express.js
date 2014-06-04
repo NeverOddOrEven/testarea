@@ -4,6 +4,7 @@
  * Module dependencies.
  */
 var express = require('express'),
+	http = require('http'),
 	morgan = require('morgan'),
 	bodyParser = require('body-parser'),
 	session = require('express-session'),
@@ -15,6 +16,7 @@ var express = require('express'),
 	mongoStore = require('connect-mongo')({
 		session: session
 	}),
+	twitter = require('ntwitter'),
 	flash = require('connect-flash'),
 	config = require('./config'),
 	consolidate = require('consolidate'),
@@ -23,6 +25,8 @@ var express = require('express'),
 module.exports = function(db) {
 	// Initialize express app
 	var app = express();
+	var server = http.createServer(app);
+	var io = require('socket.io').listen(server);
 
 	// Globbing model files
 	config.getGlobbedFiles('./app/models/**/*.js').forEach(function(modelPath) {
@@ -136,5 +140,21 @@ module.exports = function(db) {
 		});
 	});
 
-	return app;
+	io.on('connection', function (socket) {
+    		socket.broadcast.emit('user connected');
+		//io.sockets.emit('serversayshi');
+		socket.broadcast.emit('serversayshi');
+    		socket.on('message', function (msg) {
+      			console.log('received message from', msg);
+     			console.log('broadcasting message');
+      			console.log('payload is', msg);
+      			io.sockets.emit('broadcast', {
+        			payload: msg,
+        			source: 'from'
+      			});
+      			console.log('broadcast complete');
+    		});
+  	});
+
+	return server;
 };
