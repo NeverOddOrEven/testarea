@@ -1,0 +1,36 @@
+.bck1 {
+  background-color: #f48787;
+}
+
+.bck2 {
+  background-color: #af8ce8;
+}
+
+.bck3 {
+  background-color: #acc5f4;
+}
+
+.bck4 {
+  background-color: #cee5c7;
+}
+
+.bck5 {
+  background-color: #f8fab2;
+}
+
+.bck6 {
+  background-color: #e0cfdc
+}
+
+.half {
+  width: 50%;
+}
+
+.third {
+  width: 33%;
+}
+
+.col {
+  display: block;
+  float: left;
+}
