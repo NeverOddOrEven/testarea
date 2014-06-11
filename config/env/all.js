@@ -13,10 +13,12 @@ module.exports = {
 	assets: {
 		lib: {
 			css: [
-				'public/lib/bootstrap/dist/css/bootstrap.css',
-				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+				//'public/lib/bootstrap/dist/css/bootstrap.css',
+				//'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+				//'public/lib/bxSlider/jquery.bxslider.css'
 			],
 			js: [
+				'public/lib/jquery/jquery.min.js',
 				'public/lib/angular/angular.js',
 				'public/lib/angular-resource/angular-resource.js',
 				'public/lib/angular-animate/angular-animate.js',
@@ -24,7 +26,8 @@ module.exports = {
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/angular-socket-io/socket.js',
-				'public/lib/socket.io-client/socket.io.js'
+				'public/lib/socket.io-client/socket.io.js',
+				'public/lib/bxSlider/jquery.bxslider.js'
 			]
 		},
 		css: [

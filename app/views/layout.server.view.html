@@ -32,6 +32,48 @@
 	<!-- Fav Icon -->
 	<link href="/modules/core/img/brand/favicon.ico" rel="shortcut icon" type="image/x-icon">
 
+    <style>
+      /*-------------------
+      CSS Resets
+      -------------------*/
+      body,body * { 
+          margin: 0;
+          padding: 0;
+      }
+      table {
+          border-collapse: collapse;
+          border-spacing: 0;
+      }
+      fieldset,img { 
+          border: 0;
+      }
+      img {
+          display: block;
+      }
+      address,caption,cite,code,dfn,th,var {
+          font-style: normal;
+          font-weight: normal;
+      }
+      ol,ul {
+          list-style: none;
+      }
+      caption,th {
+          text-align: left;
+      }
+      h1,h2,h3,h4,h5,h6 {
+          font-size: 100%;
+          font-weight: normal;
+      }
+      q:before,q:after {
+          content: '';
+      }
+      abbr,acronym {
+          border: 0;
+      }
+      a:hover, a:active {
+          outline: none;
+      }
+    </style>
 	<!--Application CSS Files-->
 	{% for cssFile in cssFiles %}<link rel="stylesheet" href="{{cssFile}}">
 	{% endfor %}
