@@ -1,19 +1,41 @@
-$(document).ready(function()  {
-  
-  /* Grab a DOM reference to the element of interest */
-  var element = document.getElementById('row');
-  
-  /* Get an array of all the CSS that touches any descendant of the DOM element */
-  var allTheCss = allCss(element, window.document);
-  
-  /* There may be duplicate rules. We only need one "copy" of each rule that applies. */
-  var uniqueCss = $.unique(allTheCss).join(' ');
-  
-  /* Print the results. Would be cool if this could be pretty printed... */
-  console.log(uniqueCss);
-
-  /* Recursively traverse the DOM tree for all descendants of element in doc */
+//$(document).ready(function()  {
+CSSLIB = (function () {
   function allCss(element, doc) {
+      var parentsCss = parentElementsCss(element, doc);
+      var childrenCss = childElementsCss(element, doc);
+    
+      /* Combine parent with children */
+      for (var i = 0; i < parentsCss.length; ++i) {
+          childrenCss.push(parentsCss[i]);
+      }
+    
+      return childrenCss;
+  }
+  
+  function parentElementsCss(element, doc) {
+      var treeCss = [];
+
+      if (element.parentElement) {
+          var parentCss = parentElementsCss(element.parentElement, doc);
+          
+        
+          // Add the parent styling to the tree of css
+          for (var i = 0; i < parentCss.length; ++i) {
+              treeCss.push(parentCss[i]);
+          }
+      }
+      
+      // Get my styling and add to the tree of css
+      var thisNodesCss = elementCss(element, doc);
+      for (var i = 0; i < thisNodesCss.length; ++i) {
+          treeCss.push(thisNodesCss[i]);
+      }
+      
+      return treeCss;
+  }
+  
+  /* Recursively traverse the DOM tree for all descendants of element in doc */
+  function childElementsCss(element, doc) {
       var treeCss = [];
       var childrenCss = [];
     
@@ -72,4 +94,67 @@ $(document).ready(function()  {
 
       return o;
   }
-});
+  
+  // Credit: http://stackoverflow.com/questions/10191941/jquery-unique-on-an-array-of-strings
+  // Credit: http://stackoverflow.com/users/491075/gion-13
+  function unique(array) {
+      return $.grep(array, function(el, index) {
+          return index == $.inArray(el, array);
+      });
+  }
+  
+  return {
+      test : function() {
+          console.log('hi');
+      },
+      printCssForElement : function(xPath) {
+          /* Grab a DOM reference to the element of interest (jquery + xpath) */
+          var element = $x(xPath)[0];
+          if (!element) {
+              console.log('Element not found');
+              return '';
+          }
+            
+          /* Get an array of all the CSS that touches any descendant of the DOM element */
+          var allTheCss = allCss(element, window.document);
+
+          /* There may be duplicate rules. We only need one "copy" of each rule that applies. */
+          var uniqueCss = unique(allTheCss).join(' ');
+
+          /* Get the results. Would be cool if this could be pretty printed... */
+          return uniqueCss;
+      },
+      prettyPrintCssForElement : function(xPath) {
+          /* Grab a DOM reference to the element of interest (jquery + xpath) */
+          var element = $x(xPath)[0];
+          if (!element) {
+              console.log('Element not found');
+              return '';
+          }
+            
+          /* Get an array of all the CSS that touches any descendant of the DOM element */
+          var allTheCss = allCss(element, window.document);
+
+          /* There may be duplicate rules. We only need one "copy" of each rule that applies. */
+          var tokens = unique(allTheCss);
+
+          var formattedStyles = '';
+          for (var i = 0; i < tokens.length; ++i) {
+              var selector = tokens[i].split('{')[0];
+              var styles = tokens[i].split('{')[1]  // Take the stuff after the open bracket
+                            .split('}')[0]          // Take the stuff to the left of the close bracket
+                            .split(';');            // Separated by semicolons
+              
+              var formattedStyle = selector + ' { ' + '\n'  
+                  + styles.map(function(obj, index) 
+                                  { return index === styles.length-1 ? '' : '    ' + obj + ';\n' }).join('')
+                  + '}' + '\n';
+              
+              formattedStyles = formattedStyles + formattedStyle;
+          }
+        
+          /* Get the results. Would be cool if this could be pretty printed... */
+          return formattedStyles;
+      }
+  };
+})();
