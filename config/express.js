@@ -139,21 +139,71 @@ module.exports = function(db) {
 			error: 'Not Found'
 		});
 	});
+  
+    // TODO - Put all these in environment variables
+    var twitterClient =  new twitter({
+                  consumer_key: 'g3zOaBhI4Tziha3Ptxl5VmFHu',
+                  consumer_secret: 'EAKR0TtJkUjJfJxnBrDw1MqzMKepka34zNLVBFHaKoOsIH1OfA',
+                  access_token_key: '589048631-lbGpYsdcd6sO1jIgP4NqSgQEkftu0E1huyPTTINB',
+                  access_token_secret: 'aqHxoKwyfWji9H8ocQY3OLPu3SQyYC0KuXk9fd3jFygHA'
+              }),
+        stream = null,
+        track = 'abercrombie,hollister,a%26f,abercrombie%20%26%20fitch,HCo,HCo.',
+        users = [];
+    
+    io.on('connection', function (socket) {
+        console.log('user connected');
+        
+        // The user it's added to the array if it doesn't exist
+        if(users.indexOf(socket.id) === -1) {
+            users.push(socket.id);
+        }
+      
+        socket.on('start stream', function() {
+            // The stream will be started only when the 1st user arrives
+            if(stream === null) {
+                twitterClient.stream('statuses/filter', {
+                    track: track
+                }, function(s) {
+                    stream = s;
+                    stream.on('data', function(data) {
+                        // only broadcast when users are online
+                        if(users.length > 0) {
+                            // This emits the signal to all users but the one
+                            // that started the stream
+                            socket.broadcast.emit('new tweet', data);
+                            // This emits the signal to the user that started
+                            // the stream
+                            socket.emit('new tweet', data);
+                        }
+                        else {
+                            // If there are no users connected we destroy the stream.
+                            // Why would we keep it running for nobody?
+                            console.log('users have all disconnected');
+                            stream.destroy();
+                            stream = null;
+                        }
+                    });
+                });
+            }
+        });
 
-	io.on('connection', function (socket) {
-    		socket.broadcast.emit('user connected');
-		//io.sockets.emit('serversayshi');
-		socket.broadcast.emit('serversayshi');
-    		socket.on('message', function (msg) {
-      			console.log('received message from', msg);
-     			console.log('broadcasting message');
-      			console.log('payload is', msg);
-      			io.sockets.emit('broadcast', {
-        			payload: msg,
-        			source: 'from'
-      			});
-      			console.log('broadcast complete');
-    		});
+        // This handles when a user is disconnected
+        socket.on('disconnect', function(o) {
+            console.log('user disconnected');
+            // find the user in the array
+            var index = users.indexOf(socket.id);
+            if(index != -1) {
+                // Eliminates the user from the array
+                users.splice(index, 1);
+            }
+        });
+
+        // Emits signal when the user is connected sending
+        // the tracking words the app it's using
+        socket.emit('connected', {
+            tracking: track
+        });
   	});
 
 	return server;

@@ -1,3 +1,4 @@
+/*
 @import url(http://fonts.googleapis.com/css?family=Nunito);
 
 html {
@@ -36,7 +37,7 @@ img {
   width: 320px;
   height: 240px;
   -webkit-transform: translateZ(.25px) 
-    /*scale(.75) translateX(-94%) translateY(-100%) rotate(2deg)*/;
+    scale(.75) translateX(-94%) translateY(-100%) rotate(2deg);
   padding: 10px;
   border-radius: 5px;
   background: rgba(240,230,220, .7);
@@ -48,3 +49,4 @@ img:last-of-type {
 }
 
 
+*/

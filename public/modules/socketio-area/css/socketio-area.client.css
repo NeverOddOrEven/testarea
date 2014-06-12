@@ -1,36 +1,36 @@
-.bck1 {
-  background-color: #f48787;
+.all-tweets {
+  display: inline-block;
 }
 
-.bck2 {
-  background-color: #af8ce8;
+.tweet {
+  width: 400px;
+  margin: 10px;
+  background-color: #e8e6d6;
+  -webkit-box-shadow: 3px 3px 2px 0px rgba(0, 126, 50, 0.75);
+  -moz-box-shadow:    3px 3px 2px 0px rgba(0, 126, 50, 0.75);
+  box-shadow:         3px 3px 2px 0px rgba(0, 126, 50, 0.75);
+  display: inline-block;
+  word-wrap: break-word;
 }
 
-.bck3 {
-  background-color: #acc5f4;
+.tweet .twitter-profile-pic {
+  display: inline-block;
+  margin: 10px 10px 0px 10px;
+  width: 75px;
+  height: 75px;
 }
 
-.bck4 {
-  background-color: #cee5c7;
+.tweet .twitter-username {
+  font-family: 'Dosis', sans-serif;
+  display: inline-block;
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 10px 10px 0px 10px;
 }
 
-.bck5 {
-  background-color: #f8fab2;
-}
-
-.bck6 {
-  background-color: #e0cfdc
-}
-
-.half {
-  width: 50%;
-}
-
-.third {
-  width: 33%;
-}
-
-.col {
-  display: block;
-  float: left;
+.tweet .tweet-text {
+  font-family: 'Dosis', sans-serif;
+  font-size: 1.75rem;
+  color: #910909;
+  margin: 10px;
 }
