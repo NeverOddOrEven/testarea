@@ -148,7 +148,6 @@ module.exports = function(db) {
                   access_token_secret: 'aqHxoKwyfWji9H8ocQY3OLPu3SQyYC0KuXk9fd3jFygHA'
               }),
         stream = null,
-        track = 'abercrombie,hollister,a%26f,abercrombie%20%26%20fitch,HCo,HCo.',
         users = [];
     
     io.on('connection', function (socket) {
@@ -163,7 +162,8 @@ module.exports = function(db) {
             // The stream will be started only when the 1st user arrives
             if(stream === null) {
                 twitterClient.stream('statuses/filter', {
-                    track: track
+                    //'locations':'38.46,-85.11,41.88,-80.37' // ohio
+                    'locations' : '-83.1226,39.868,-82.8808,40.12' // NYC/NE
                 }, function(s) {
                     stream = s;
                     stream.on('data', function(data) {
@@ -184,6 +184,10 @@ module.exports = function(db) {
                             stream = null;
                         }
                     });
+                  
+                    stream.on('error', function(type, code, description) {
+                        console.log(type + ' ' + code + ': ' + description);
+                    });
                 });
             }
         });
@@ -197,12 +201,14 @@ module.exports = function(db) {
                 // Eliminates the user from the array
                 users.splice(index, 1);
             }
+          
+            console.log('number of users connected: ' + users.length);
         });
 
         // Emits signal when the user is connected sending
         // the tracking words the app it's using
         socket.emit('connected', {
-            tracking: track
+            tracking: ''
         });
   	});
 
