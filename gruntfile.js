@@ -124,7 +124,6 @@ module.exports = function(grunt) {
 				NODE_ENV: 'test'
 			},
 			all: {
-		        	src: './config/env/heroku.json'
 			},
 			local: {
 		        	src: './config/env/heroku.json'
@@ -170,7 +169,7 @@ module.exports = function(grunt) {
 	});
 
 	// Default task(s).
-	grunt.registerTask('default', ['env:all', 'print_env','lint', 'concurrent:default']);
+	grunt.registerTask('default', ['env:local', 'print_env','lint', 'concurrent:default']);
 
 	// Debug task.
 	grunt.registerTask('debug', ['lint', 'concurrent:debug']);
