@@ -20,6 +20,11 @@ module.exports = {
 		css: 'public/dist/application.min.css',
 		js: 'public/dist/application.min.js'
 	},
+	instagram: {
+		clientID: process.env.INSTAGRAM_ID || 'CLIENT_ID',
+		clientSecret: process.env.INSTAGRAM_SECRET || 'APP_SECRET',
+		callbackURL: 'http://localhost:3000/auth/instagram/callback'
+	},
 	facebook: {
 		clientID: process.env.FACEBOOK_ID || 'APP_ID',
 		clientSecret: process.env.FACEBOOK_SECRET || 'APP_SECRET',

@@ -13,9 +13,9 @@ module.exports = {
 	assets: {
 		lib: {
 			css: [
-				//'public/lib/bootstrap/dist/css/bootstrap.css',
-				//'public/lib/bootstrap/dist/css/bootstrap-theme.css',
-				//'public/lib/bxSlider/jquery.bxslider.css'
+				'public/lib/bootstrap/dist/css/bootstrap.css',
+				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+				'public/lib/bxSlider/jquery.bxslider.css'
 			],
 			js: [
 				'public/lib/jquery/jquery.min.js',

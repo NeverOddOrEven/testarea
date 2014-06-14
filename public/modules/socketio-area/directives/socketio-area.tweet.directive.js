@@ -5,6 +5,7 @@ angular.module('socketio-area')
               scope.profileUser = scope.tweetData.user.name;
               scope.profileImage = scope.tweetData.user.profile_image_url;
               scope.tweetText = scope.tweetData.text;
+			  scope.directiveClasses = 'rotate15';
           }
           return {
               restrict: 'EA',

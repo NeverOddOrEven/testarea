@@ -122,6 +122,12 @@ module.exports = function(grunt) {
 		env: {
 			test: {
 				NODE_ENV: 'test'
+			},
+			all: {
+		        	src: './config/env/heroku.json'
+			},
+			local: {
+		        	src: './config/env/heroku.json'
 			}
 		},
 		mochaTest: {
@@ -153,8 +159,15 @@ module.exports = function(grunt) {
 		grunt.config.set('applicationCSSFiles', config.assets.css);
 	});
 
+
+	grunt.registerTask('print_env', 'prints environment variables', function() {
+		console.log(process.env.AWS_S3_BUCKET);
+		console.log(process.env.AWS_S3_ACCESS_KEY);
+		console.log(process.env.AWS_S3_SECRET_KEY);
+	});
+
 	// Default task(s).
-	grunt.registerTask('default', ['lint', 'concurrent:default']);
+	grunt.registerTask('default', ['env:all', 'print_env','lint', 'concurrent:default']);
 
 	// Debug task.
 	grunt.registerTask('debug', ['lint', 'concurrent:debug']);
