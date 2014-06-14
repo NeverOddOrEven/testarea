@@ -1,6 +1,8 @@
 {
 	"AWS_S3_BUCKET": "explorecmhuserfiles",
 	"AWS_S3_SECRET_KEY": "hEV9KatD24RAkTM/4gisz3YD5L+n5uGTtv6SpH08",
-	"AWS_S3_ACCESS_KEY": "AKIAI2GRLYBGIRM3HWYQ"
-	
+	"AWS_S3_ACCESS_KEY": "AKIAI2GRLYBGIRM3HWYQ",
+	"INSTAGRAM_ID":"CLIENT_ID",
+	"INSTAGRAM_SECRET": "",
+	"INSTAGRAM_CALLBACK": "http://localhost:3000/auth/instagram/callback"
 }

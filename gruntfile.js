@@ -164,6 +164,9 @@ module.exports = function(grunt) {
 		console.log(process.env.AWS_S3_BUCKET);
 		console.log(process.env.AWS_S3_ACCESS_KEY);
 		console.log(process.env.AWS_S3_SECRET_KEY);
+		console.log(process.env.INSTAGRAM_ID);
+		console.log(process.env.INSTAGRAM_SECRET);
+		console.log(process.env.INSTAGRAM_CALLBACK);
 	});
 
 	// Default task(s).
