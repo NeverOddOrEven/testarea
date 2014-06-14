@@ -7,4 +7,4 @@ public/lib
 app/tests/coverage/
 .bower-*/
 .idea/
-./config/env/heroku.json
+config/env/heroku.json
