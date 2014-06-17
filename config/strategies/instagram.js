@@ -12,9 +12,10 @@ var passport = require('passport'),
 module.exports = function() {
 	// Use twitter strategy
 	passport.use(new InstagramStrategy({
-			consumerKey: config.instagram.clientID,
-			consumerSecret: config.instagram.clientSecret,
-			callbackURL: config.instagram.callbackURL
+			clientID: config.instagram.clientID,
+			clientSecret: config.instagram.clientSecret,
+			callbackURL: config.instagram.callbackURL,
+			passReqToCallback: true
 		},
 		function(req, token, tokenSecret, profile, done) {
 			// Set the provider data and include tokens
