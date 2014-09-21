@@ -22,9 +22,7 @@ angular.module('socketio-area').controller('SocketioAreaController', ['$scope',
         }
       
         function hookupTwitterIO() {
-            var server = process.env.NODE_ENV === 'production' 
-                ? 'http://asuttmiller-pf-2.herokuapp.com/'
-                : 'http://localhost:3000/';
+            var server = window.location.href;
             _socket = io.connect(server);
         
             // This will listen when the server emits the "connected" signal

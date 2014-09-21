@@ -1,6 +1,7 @@
 {
     "jscodehints.detectedExclusions": [
         "C:/Users/suttm_000/NodeJS/testarea/public/lib/jquery/src/effects.js",
-        "C:/Users/suttm_000/NodeJS/testarea/public/lib/jquery/src/event.js"
+        "C:/Users/suttm_000/NodeJS/testarea/public/lib/jquery/src/event.js",
+        "C:/Users/suttm_000/NodeJS/testarea/public/lib/jquery/src/exports.js"
     ]
 }
