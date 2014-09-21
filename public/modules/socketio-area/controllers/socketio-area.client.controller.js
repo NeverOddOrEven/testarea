@@ -9,11 +9,7 @@ angular.module('socketio-area').controller('SocketioAreaController', ['$scope',
         /* declarations */
 		var firstName = '',
             lastName = '';
-        $scope.lastTenTweets = [];
-        
-        
-      
-        
+        $scope.lastTenTweets = [];  
         
         /* SUPPORT FUNCTIONS */
         function emitMsj(signal, o) {
@@ -26,7 +22,10 @@ angular.module('socketio-area').controller('SocketioAreaController', ['$scope',
         }
       
         function hookupTwitterIO() {
-            _socket = io.connect('http://localhost:3000/');
+            var server = process.env.NODE_ENV === 'production' 
+                ? 'http://asuttmiller-pf-2.herokuapp.com/'
+                : 'http://localhost:3000/';
+            _socket = io.connect(server);
         
             // This will listen when the server emits the "connected" signal
             // informing to the client that the connection has been stablished
