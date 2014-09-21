@@ -2,6 +2,10 @@
   display: inline-block;
 }
 
+.tweet--header__add-margin {
+    margin-bottom: 50px;
+}
+
 body, html, section {
     height: 100%;
 }

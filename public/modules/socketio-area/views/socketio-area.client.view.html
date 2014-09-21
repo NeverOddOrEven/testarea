@@ -1,7 +1,8 @@
 
-<section data-ng-controller="SocketioAreaController">
-  <div ng-repeat="currentTweet in lastTenTweets" class="all-tweets">
-    <tweet tweet-data="currentTweet"></tweet>
-  </div>
+<section data-ng-controller="SocketioAreaController" >
+    <h1 class="tweet--header__add-margin">Tweets in Columbus, OH</h1>
+    <div ng-repeat="currentTweet in lastTenTweets" class="all-tweets">
+        <tweet tweet-data="currentTweet"></tweet>
+    </div>
 </section>
 
