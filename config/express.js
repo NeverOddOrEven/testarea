@@ -26,8 +26,11 @@ module.exports = function(db) {
 	// Initialize express app
 	var app = express();
 	var server = http.createServer(app);
-	var io = require('socket.io').listen(server);
-
+	var io = require('socket.io')({
+            "transports":["xhr-polling"], 
+            "polling duration":10
+        }).listen(server);
+    
 	// Globbing model files
 	config.getGlobbedFiles('./app/models/**/*.js').forEach(function(modelPath) {
 		require(path.resolve(modelPath));
