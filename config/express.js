@@ -142,10 +142,10 @@ module.exports = function(db) {
   
     // TODO - Put all these in environment variables
     var twitterClient =  new twitter({
-                  consumer_key: 'g3zOaBhI4Tziha3Ptxl5VmFHu',
-                  consumer_secret: 'EAKR0TtJkUjJfJxnBrDw1MqzMKepka34zNLVBFHaKoOsIH1OfA',
-                  access_token_key: '589048631-lbGpYsdcd6sO1jIgP4NqSgQEkftu0E1huyPTTINB',
-                  access_token_secret: 'aqHxoKwyfWji9H8ocQY3OLPu3SQyYC0KuXk9fd3jFygHA'
+                  consumer_key: process.env.TWITTER_KEY || 'UNDEFINED',
+                  consumer_secret: process.env.TWITTER_SECRET || 'UNDEFINED',
+                  access_token_key: process.env.TWITTER_ACCESS_KEY || 'UNDEFINED',
+                  access_token_secret: process.env.TWITTER_ACCESS_SECRET || 'UNDEFINED'
               }),
         stream = null,
         users = [];
