@@ -1,6 +1,9 @@
 
 <section data-ng-controller="SocketioAreaController" >
     <h1 class="tweet--header__add-margin">Tweets in Columbus, OH</h1>
+    <div data-ng-if="lastTenTweets.length === 0">
+        <p>Waiting for tweets to arrive...</p>
+    </div>
     <div ng-repeat="currentTweet in lastTenTweets" class="all-tweets">
         <tweet tweet-data="currentTweet"></tweet>
     </div>
