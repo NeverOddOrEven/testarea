@@ -1,12 +1,5 @@
 
 <section data-ng-controller="SocketioAreaController">
-  <div class="input-group">
-    <input type="text" class="form-control" placeholder="First Name" ng-model="firstName">
-    <input type="text" class="form-control" placeholder="Last Name" ng-model="lastName">
-    <p>{{firstName}}</p>
-    <p>{{lastName}}</p>
-  </div>
-  
   <div ng-repeat="currentTweet in lastTenTweets" class="all-tweets">
     <tweet tweet-data="currentTweet"></tweet>
   </div>

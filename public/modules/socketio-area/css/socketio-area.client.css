@@ -2,6 +2,10 @@
   display: inline-block;
 }
 
+body, html, section {
+    height: 100%;
+}
+
 body {
 	background: rgb(255,213,213); /* Old browsers */
 	background: -moz-linear-gradient(-45deg,  rgb(255,213,213) 0%, rgb(251,223,205) 12%, rgb(249,251,225) 30%, rgb(236,252,228) 62%, rgb(204,228,246) 83%, rgb(198,196,212) 100%); /* FF3.6+ */
