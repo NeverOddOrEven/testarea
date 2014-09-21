@@ -26,7 +26,7 @@ module.exports = function(db) {
 	// Initialize express app
 	var app = express();
 	var server = http.createServer(app);
-	var io = require('socket.io')({
+	var io = require('socket.io')(server, {
             "transports":["xhr-polling"], 
             "polling duration":10
         }).listen(server);
