@@ -20,6 +20,13 @@ angular.module('socketio-area').controller('SocketioAreaController', ['$scope',
                 alert("SocketIO borked.");
             }
         }
+        
+        // Reload the page every 7.5 seconds if no tweets... something has messed up
+        setTimeout(function() {
+            if ($scope.lastTenTweets.length === 0) {
+                window.location.reload();
+            } 
+        }, 7500);
       
         function hookupTwitterIO() {
             var server = window.location.href;
